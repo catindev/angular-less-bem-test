@@ -1,0 +1,21 @@
+.wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 5%;
+}
+.my-block {
+  border: 1px solid black;
+  display: block;
+  padding: 20px;
+}
+.my-block_padding_big {
+  padding: 40px;
+}
+.my-block__my-element {
+  border: 2px dotted red;
+  display: block;
+  padding: 20px;
+}
+.my-block__my-element_border-color_black {
+  border-color: black;
+}

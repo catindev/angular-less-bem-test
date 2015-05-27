@@ -1,0 +1,26 @@
+{
+  "name": "sandbox",
+  "version": "0.1.0",
+  "authors": [
+    "Владимир Тицкий <Vladimir.Titskiy@inessoft.kz>"
+  ],
+  "description": "angularJS, less, bem test",
+  "main": "index.html",
+  "keywords": [
+    "angular",
+    "less",
+    "bem"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-bem": "~0.2.2"
+  }
+}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Песочница</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-app="sandbox">
+    <div class="wrapper" ng-controller="sandCtrl as ctrl">
+        <div 
+            block="my-block" 
+            mod="{ padding: ctrl.value1 }"
+            ng-click="ctrl.demo()"
+            >
+            <div 
+                elem="my-element" 
+                mod="{ borderColor: ctrl.value2 }"
+                >
+            </div>
+        </div>        
+    </div>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-bem/angular-bem.js"></script>
+<script>
+    var sandbox = angular.module('sandbox', ['tenphi.bem']);
+
+    sandbox.controller('sandCtrl', function($scope){
+        var ctrl = this;
+        ctrl.demo = function(){
+            ctrl.value1 = 'big';
+            ctrl.value2 = 'black';
+        }
+    });
+</script>
+</body>
+</html>
