@@ -1,1 +1,3 @@
-"# Angular BEM = Angular-bem + Less " 
+# Angular BEM = Angular-bem + Less
+
+Demo app 
