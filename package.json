@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Test BEM app",
   "main": "",
+  "repository":"https://github.com/catindev/angular-less-bem-test.git",
   "directories": {
     "test": "tests"
   },
