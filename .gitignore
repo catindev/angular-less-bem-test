@@ -1,3 +1,4 @@
 assets/vendors/
 node_modules
 components/build
+npm-debug.log
