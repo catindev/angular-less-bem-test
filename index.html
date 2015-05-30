@@ -4,35 +4,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>Песочница</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/components.css">
 </head>
 <body ng-app="sandbox">
+    
     <div class="wrapper" ng-controller="sandCtrl as ctrl">
-        <div 
-            block="my-block" 
-            mod="{ padding: ctrl.value1 }"
-            ng-click="ctrl.demo()"
-            >
-            <div 
-                elem="my-element" 
-                mod="{ borderColor: ctrl.value2 }"
-                >
-            </div>
-        </div>        
+        <textbox label="{{ ctrl.wow }}" state="invalid" value="garbage data"/>
     </div>
 
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-bem/angular-bem.js"></script>
+<script src="assets/vendors/angular/angular.min.js"></script>
+<script src="assets/vendors/angular-bem/angular-bem.js"></script>
 <script>
-    var sandbox = angular.module('sandbox', ['tenphi.bem']);
-
-    sandbox.controller('sandCtrl', function($scope){
-        var ctrl = this;
-        ctrl.demo = function(){
-            ctrl.value1 = 'big';
-            ctrl.value2 = 'black';
-        }
-    });
+    angular.module('sandbox', ['tenphi.bem'])
+        .controller('sandCtrl', function($scope){
+            var ctrl = this;
+            ctrl.wow = "Йа метко!";
+            ctrl.demo = function(){
+                ctrl.value1 = 'big';
+                ctrl.value2 = 'black';
+            }
+        });
 </script>
+<script src="assets/components.js"></script>
 </body>
 </html>

@@ -1,0 +1,35 @@
+.b-input-text {
+  background-color: #fff;
+  width: 100%;
+  border: 3px solid #797979;
+  font-family: @custom-font;
+  line-height: normal;
+  .box-sizing();
+  .outline();
+  .border-radius(8px);
+  &:focus, &.focus {
+    .box-shadows-2(0 5px 10px -5px rgba(0, 0, 0, 0.2) inset, 0 0 15px 0 rgba(3, 140, 62, 0.6));
+  }
+
+  &_device_pod {
+    font-size: 1.5rem;
+    padding: 0 16px;
+    height: 52px;
+  }
+  
+  &_device_portal {
+    font-size: 1.2rem;
+    padding: 0 14px;
+    height: 42px;
+  }  
+  
+  &_state_invalid {
+    border-color: @color-red;
+    padding-right: 45px;
+    background: url(images/icons/icon-validate.png) no-repeat right 5px center ;
+    &:focus, &.focus {
+      .box-shadows-2(0 5px 10px -5px rgba(0, 0, 0, 0.3) inset, 0 0 15px 0 rgba(255, 11, 0, 0.4));
+    }
+  }  
+  
+}

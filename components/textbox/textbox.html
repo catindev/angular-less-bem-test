@@ -1,0 +1,12 @@
+<div block="b-textbox">
+    <label block="b-label" for="textbox_input">
+        <span elem="asteriks">*</span><span elem="text">{{ label }}</span>
+    </label>
+    <input 
+        id="textbox_input"
+        block="b-input-text" 
+        type="text" 
+        mod="{ device: 'portal', state: state }"
+        value="{{ value }}"/>
+</div>	
+
