@@ -1,27 +1,22 @@
 .b-input-text {
-  background-color: #fff;
-  width: 100%;
-  border: 3px solid #797979;
-  font-family: @custom-font;
-  line-height: normal;
-  .box-sizing();
-  .outline();
-  .border-radius(8px);
-  &:focus, &.focus {
-    .box-shadows-2(0 5px 10px -5px rgba(0, 0, 0, 0.2) inset, 0 0 15px 0 rgba(3, 140, 62, 0.6));
-  }
+    background-color: #fff;
+    padding: 6px 8px;
+    font: 1em Verdana,Arial,sans-serif;
+    width: 100%;
+    border: 1px solid #ABB7B7;
+    line-height: normal;
+    .box-sizing();
+    .border-radius(1px);
+    .focused_input();
 
-  &_device_pod {
+    &_main-search_on {
+          border-radius: 3px;
+    }
+/*  &_device_pod {
     font-size: 1.5rem;
     padding: 0 16px;
     height: 52px;
   }
-  
-  &_device_portal {
-    font-size: 1.2rem;
-    padding: 0 14px;
-    height: 42px;
-  }  
   
   &_state_invalid {
     border-color: @color-red;
@@ -30,6 +25,6 @@
     &:focus, &.focus {
       .box-shadows-2(0 5px 10px -5px rgba(0, 0, 0, 0.3) inset, 0 0 15px 0 rgba(255, 11, 0, 0.4));
     }
-  }  
+  }  */
   
 }

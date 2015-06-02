@@ -1,7 +1,5 @@
 <div block="b-textbox">
-    <label block="b-label" for="textbox_input">
-        <span elem="asteriks">*</span><span elem="text">{{ label }}</span>
-    </label>
+    <label block="b-label" for="textbox_input" ng-bind="label"></label>
     <input 
         id="textbox_input"
         block="b-input-text" 
