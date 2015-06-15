@@ -2,12 +2,15 @@ angular.module("sandbox").directive('textbox', [function () {
     return {
         scope: {
             label: '@',
-            value: '@',
+            value: '=',
             required: '@',
-            state: '@'
+            state: '@',
+            hint:'@'
         },
         templateUrl: 'components/textbox/textbox.html',
         restrict: "E",
-        link: function (scope, elem, attrs) { }
+        link: function (scope, elem, attrs) { 
+            
+        }
     }
 }]);

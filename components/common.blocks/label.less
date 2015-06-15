@@ -1,17 +1,28 @@
 .b-label {
     display: block;
-    font: 0.8em/1.3em Verdana,Arial,sans-serif;
-    font-size: 1.125rem;
-    line-height: 1.333;
+    font-size: 1rem;
+    line-height: 1.2;
     border: 0 none;
     margin-bottom: 5px;
+    cursor: pointer;
+    
+    &_device_desktop {
+        font-size: .875rem;
+        position: relative; 
+        margin-bottom: 7px;
+    }
+    
+    &__caption { 
+        &_required_true { margin-left: 16px; }    
+    }
+    
     &__asteriks { 
-         margin-left: -12px;
+        position: absolute;
+        //margin-left: -12px;
 	    color: #ff0b00;
 	    font-size: 1.3rem;
 	    line-height: 1;
-	    margin-top: 2px;
-	    position: absolute;
+	    margin-top: 1px;
 	    border: 0 none;
 	    padding: 0;
     }

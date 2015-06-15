@@ -21,6 +21,8 @@
   ],
   "dependencies": {
     "angular": "~1.4.0",
-    "angular-bem": "~0.2.2"
+    "angular-bem": "~0.2.2",
+    "angular-ui-router": "~0.2.15",
+    "normalize.css": "~3.0.3"
   }
 }

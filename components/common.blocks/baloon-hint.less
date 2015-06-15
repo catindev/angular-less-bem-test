@@ -1,0 +1,41 @@
+.b-baloon-hint {
+	display: block;
+	
+	&__tail {
+        width: 0;
+        height: 0;
+        margin-top: 5px;
+        margin-left: 3%;
+        border-style: solid;
+        border-width: 0 7px 5px 7px;
+        border-color: transparent transparent #eee transparent;
+        
+        &_state_error { 
+            border-color: transparent transparent #ff0b00 transparent; 
+        }
+        
+        &_state_warning { 
+            border-color: transparent transparent #ff9e00 transparent; 
+        }
+	}
+    
+    &__message {
+    	position: relative;
+    	background: #fff;
+    	border: 2px solid #eee;
+    	padding: 8px 15px;
+    	font-size: .9rem;
+    	border-radius: 3px;
+    	color: #6C7A89;
+    	box-sizing: border-box;
+    	word-wrap: break-word;
+    	
+        &_state_error {
+            border-color: #ff0b00; color: #ff0b00;         
+        }
+        
+        &_state_warning {
+            border-color: #ff9e00; color: #ff9e00;         
+        }           
+    }    
+}

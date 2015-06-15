@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('build/fonts/ubuntu-r-webfont.woff') format('woff'); /*base64:skip*/
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('build/fonts/ubuntu-ri-webfont.woff') format('woff'); /*base64:skip*/
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('build/fonts/ubuntu-b-webfont.woff') format('woff'); /*base64:skip*/
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('build/fonts/ubuntu-bi-webfont.woff') format('woff'); /*base64:skip*/
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu-mono';
+  src:local('Ubuntu-mono');
+  src: url('build/fonts/ubuntumono-r-webfont.woff') format('woff'); /*base64:skip*/
+  font-weight: normal;
+  font-style: normal;
+}

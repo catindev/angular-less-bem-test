@@ -1,10 +1,36 @@
-body { font: 1em Verdana, Arial, sans-serif; }
+
+html, body { 
+	font: 14px 'Ubuntu', Verdana, Arial, sans-serif;  
+	background: #000;
+	height:100%;
+}
+
+.layout {
+	position: relative;	
+	height:auto !important;
+	height:100%;
+	min-height:100%; 	
+ 	background: #ECECEC;
+ 	height: 100%;
+}
 
 .wrapper {
-  min-width: 960px !important;
-  margin: 0 auto;
-  padding: 5%;
-  background: #f6f6f6;;
-  border: 1px solid #d3d6db;
-  border-radius: 2px;
+	padding: 3rem;
+	box-sizing: border-box;
+	padding-bottom: 130px;
+}
+
+
+.header {
+	display: block;
+	background:#6C7A89;
+	height: 100px;
+}
+
+.footer{
+	position:absolute;
+	width:100%;
+	bottom:0; 
+	height: 80px;
+	background:#6C7A89;
 }

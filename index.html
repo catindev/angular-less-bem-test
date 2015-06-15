@@ -3,29 +3,60 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Песочница</title>
+    <title>Sandbox</title>
+    <link rel="stylesheet" type="text/css" href="assets/vendors/normalize.css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/fonts.css">
     <link rel="stylesheet" type="text/css" href="assets/styles.css">
     <link rel="stylesheet" type="text/css" href="assets/components.css">
 </head>
 <body ng-app="sandbox">
-    
-    <div class="wrapper" ng-controller="sandCtrl as ctrl">
-        <textbox label="{{ ctrl.wow }}" state="invalid" value="garbage data"/>
-    </div>
 
-<script src="assets/vendors/angular/angular.min.js"></script>
-<script src="assets/vendors/angular-bem/angular-bem.js"></script>
-<script>
-    angular.module('sandbox', ['tenphi.bem'])
-        .controller('sandCtrl', function($scope){
-            var ctrl = this;
-            ctrl.wow = "Йа метко!";
-            ctrl.demo = function(){
-                ctrl.value1 = 'big';
-                ctrl.value2 = 'black';
-            }
-        });
-</script>
-<script src="assets/components.js"></script>
+
+<div class="layout">
+    <div class="header"></div>
+    <div class="wrapper">
+
+        <div block="b-declaration" ng-controller="sandCtrl as ctrl">
+            
+            <div elem="header">
+                <h1 elem="title">Адресная справка</h1>
+            </div>
+
+            <div elem="input-box">
+                 <textbox 
+                    label="{{ ctrl.title }}" 
+                    value="ctrl.uin" 
+                    state="{{ ctrl.state }}"
+                    hint="{{ ctrl.uin }}">
+                </textbox>               
+            </div>
+
+            <div elem="actions">
+                <button 
+                    block="b-button" 
+                    ng-disabled="!ctrl.uin" 
+                    ng-click="alert('wow!');"
+                    mod="{ type: 'action', size: '1' }">
+                    Подписать и получить справку
+                </button>
+            </div>
+                             
+        </div>        
+    </div>
+    <div class="footer"></div>   
+</div>
+ 
 </body>
+    <script src="assets/vendors/angular/angular.min.js"></script>
+    <script src="assets/vendors/angular-bem/angular-bem.js"></script>
+    <script>
+        angular.module('sandbox', ['tenphi.bem'])
+            .controller('sandCtrl', function($scope){
+                var ctrl = this;
+                ctrl.title = "ИИН ребёнка";
+                ctrl.uin = "Some data";
+                ctrl.state = "error";
+            });
+    </script>
+    <script src="assets/components.js"></script>
 </html>
