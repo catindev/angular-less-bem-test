@@ -31,12 +31,20 @@
                 </textbox>               
             </div>
 
+            <div elem="input-box">
+                 <egov-uin
+                    type="iin" 
+                    locale="ru"
+                    label="Тестовый компонент ИИН" 
+                    value="ctrl.uin_model.value">
+                </egov-uin>               
+            </div>
+
             <div elem="actions">
                 <button 
                     block="b-button" 
                     ng-disabled="!ctrl.uin" 
-                    ng-click="alert('wow!');"
-                    mod="{ type: 'action', size: '1' }">
+                    mod="{ type: 'action', size: 'm' }">
                     Подписать и получить справку
                 </button>
             </div>
@@ -50,12 +58,14 @@
     <script src="assets/vendors/angular/angular.min.js"></script>
     <script src="assets/vendors/angular-bem/angular-bem.js"></script>
     <script>
-        angular.module('sandbox', ['tenphi.bem'])
+        angular.module('sandbox', [ 'tenphi.bem', 'egov.ui.textbox', 'egov.ui.uin' ])
             .controller('sandCtrl', function($scope){
                 var ctrl = this;
                 ctrl.title = "ИИН ребёнка";
                 ctrl.uin = "Some data";
-                ctrl.state = "error";
+                ctrl.state = "";
+
+                ctrl.uin_model = { value: '' };
             });
     </script>
     <script src="assets/components.js"></script>

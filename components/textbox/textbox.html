@@ -1,22 +1,23 @@
 <div block="b-textbox">
 
     <label 
-        for="textbox_input"
+        for="textbox_{{eid}}"
     	block="b-label"
     	mod="{ }">
     	<span ng-if="required === 'true'" elem="asteriks">*</span>
-    	<span elem="caption" mod="{ required: required }">{{ label }}</span>
+    	<span elem="caption" mod="{ required: required }" ng-bind="label"></span>
     </label>
 
     <input 
-        id="textbox_input"
+        ng-disabled="state === 'disabled'"
+        id="textbox_{{eid}}"
         block="b-input-text" 
         type="text" 
-        mod="{ device: 'deskto', state: state }"
+        mod="{ state: state }"
         ng-model="value"/>
 
     <div ng-show="hint" block="b-baloon-hint" mod="{ state: state }">
         <div elem="tail" mod="{ state: state }"></div>
-        <div elem="message" mod="{ state: state }">{{ hint }}</div>
+        <div elem="message" mod="{ state: state }" ng-bind="hint"></div>
     </div>       
 </div>	

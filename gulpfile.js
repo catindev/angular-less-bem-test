@@ -23,7 +23,7 @@ gulp.task('html', function () {
 gulp.task('js', function() {
     return gulp.src([ 'components/build/templates.js', 'components/**/*.js' ])
         .pipe(concat('components.js'))
-        .pipe(uglify({mangle: false}))
+        //.pipe(uglify({mangle: false}))
         .pipe(gulp.dest('assets/'));
 });
 
