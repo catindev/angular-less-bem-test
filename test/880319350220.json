@@ -1,0 +1,13 @@
+{
+    "iin": "880319350220",
+    "name": {
+        "firstName": "ЕВГЕНИЙ",
+        "lastName": "СВАЛУХИН",
+        "middleName": "ОЛЕГОВИЧ"
+    },
+    "gender": "MALE",
+    "dateOfBirth": 574711200000,
+    "status": "ALIVE",
+    "capable": true,
+    "hasActualDocuments": true
+}
