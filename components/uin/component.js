@@ -13,6 +13,7 @@ angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
         controller: 'uinCntrllr',
         link: function (scope, elem, attrs) {
             if(scope.type && (scope.type === 'bin' || scope.type === 'iin')) uinSrvc.model.type = scope.type;
+            if(!scope.label) scope.label = uinSrvc.model.title
         }
     }
 }]);

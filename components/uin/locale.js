@@ -6,7 +6,8 @@ angular.module('egov.ui.uin')
         "invalid_chars": " может состоять только из цифр",
         "requesting": "Данные проверяются. Подождите."
     },
-    "idtype": { "iin": "ИИН", "bin": "БИН", "other": "ИИН или БИН" }
+    "idtype": { "iin": "ИИН", "bin": "БИН", "other": "ИИН или БИН" },
+    "default_title": "Введите "
   },
   "kz": {
 
