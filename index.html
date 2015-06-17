@@ -33,16 +33,20 @@
 
             <div elem="input-box">
                  <egov-uin
-                    type="iin" 
+                    
                     locale="ru"
+                    info="ctrl.uin_model.info"
                     value="ctrl.uin_model.value">
                 </egov-uin>               
             </div>
 
+            <div elem="input-box" ng-bind="ctrl.uin_model.info">           
+            </div>            
+
             <div elem="actions">
                 <button 
                     block="b-button" 
-                    ng-disabled="!ctrl.uin" 
+                    ng-disabled="!ctrl.uin_model.info" 
                     mod="{ type: 'action', size: 'm' }">
                     Подписать и получить справку
                 </button>
@@ -61,7 +65,7 @@
             .controller('sandCtrl', function($scope){
                 var ctrl = this;
                 ctrl.title = "ИИН ребёнка";
-                ctrl.uin = "Some data";
+                ctrl.uin = "";
                 ctrl.state = "";
 
                 ctrl.uin_model = { value: '' };

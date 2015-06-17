@@ -1,5 +1,5 @@
 angular.module('egov.ui.uin')
-.controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc, $timeout) {
+.controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc) {
 
     var hintMsg = uinLcl[$scope.locale].hint, 
         typeText = uinLcl[$scope.locale].idtype;
@@ -11,6 +11,7 @@ angular.module('egov.ui.uin')
     function resetViewState() {
         $scope.state = '';
         $scope.hint = '';
+        $scope.info = '';
     };
 
     function errorState(type) {
@@ -39,14 +40,15 @@ angular.module('egov.ui.uin')
 
             uinSrvc.requestInfo(newValue, idType)
                 .success(function (data) {
-                    console.log(data);
+                    if(idType === 'iin') $scope.info  = data.name.firstName +' '+ data.name.middleName +' '+ data.name.lastName
+                    if(idType === 'bin') $scope.info  = data.fullName;    
                     $scope.state = '';
-                    $scope.hint = data.name.firstName +' '+ data.name.middleName +' '+ data.name.lastName;                        
+                    $scope.hint = $scope.info ;                       
                 })
                 .error(function (data, status) {
                     $scope.state = 'error';
-                    if (status == '404') $scope.hint = "Not found"
-                    else scope.hint = "Internal error"    
+                    if (status == '404') $scope.hint = typeText[idType] + hintMsg.not_found;
+                    else scope.hint = hintMsg.internal_error;    
                 });
         } 
     });

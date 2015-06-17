@@ -5,7 +5,8 @@ angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
             label: '@',
             value: '=',
             type: '@',
-            locale: '@'
+            locale: '@',
+            info: '='
         },
         templateUrl: 'components/uin/template.html',
         restrict: "E",

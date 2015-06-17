@@ -8,8 +8,8 @@ app.use(express.static('assets'));
 app.use('/', express.static(__dirname));
 app.use('/P40.04', express.static(__dirname));
 
-/* GBDFL responses */
 app.get('/P40.04/rest/gbdfl/persons/:uin', test_resp);
+app.get('/P40.04/rest/gbdul/organizations/:uin', test_resp);
 
 app.listen(3000);
 
