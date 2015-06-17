@@ -3,11 +3,7 @@ angular.module('egov.ui.uin')
 
     var service = this;
 
-    this.model = {
-        type: '',
-        value: '',
-        shortInfo: ''
-    };
+    this.model = { type: '' };
 
     this.resetModel  = function(){
         service.model.value = '';
@@ -52,8 +48,6 @@ angular.module('egov.ui.uin')
         if(type === 'bin') return $http.get("rest/gbdul/organizations/" + uin)
         else return $http.get("rest/gbdfl/persons/" + uin, {params: {infotype: 'short'}});   
     };
-
-    
 
     
 }]);

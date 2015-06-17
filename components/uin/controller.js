@@ -4,6 +4,10 @@ angular.module('egov.ui.uin')
     var hintMsg = uinLcl[$scope.locale].hint, 
         typeText = uinLcl[$scope.locale].idtype;
 
+     if(!$scope.label) 
+        if(!$scope.type) $scope.label = uinLcl[$scope.locale].default_title + typeText.other
+        else $scope.label = uinLcl[$scope.locale].default_title + typeText[$scope.type];  
+
     function resetViewState() {
         $scope.state = '';
         $scope.hint = '';
@@ -33,22 +37,17 @@ angular.module('egov.ui.uin')
             $scope.state = 'disabled';
             $scope.hint = hintMsg.requesting;
 
-            uinSrvc.model.value = newValue;
-
-            /* connct to rest here */
-            $timeout(function() {
-                uinSrvc.requestInfo(newValue, idType)
-                    .success(function (data) {
-                        console.log(data);
-                        $scope.state = '';
-                        $scope.hint = data.name.firstName +' '+ data.name.middleName +' '+ data.name.lastName;                        
-                    })
-                    .error(function (data, status) {
-                        $scope.state = 'error';
-                        if (status == '404') $scope.hint = "Not found"
-                        else scope.hint = "Internal error"    
-                    });
-            }, 3000);
+            uinSrvc.requestInfo(newValue, idType)
+                .success(function (data) {
+                    console.log(data);
+                    $scope.state = '';
+                    $scope.hint = data.name.firstName +' '+ data.name.middleName +' '+ data.name.lastName;                        
+                })
+                .error(function (data, status) {
+                    $scope.state = 'error';
+                    if (status == '404') $scope.hint = "Not found"
+                    else scope.hint = "Internal error"    
+                });
         } 
     });
 

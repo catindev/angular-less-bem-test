@@ -1,0 +1,13 @@
+{
+    "iin": "871005350016",
+    "name": {
+        "firstName": "НИКОЛАЙ",
+        "lastName": "КРУЛИКОВСКИЙ",
+        "middleName": "ВЯЧЕСЛАВОВИЧ"
+    },
+    "gender": "MALE",
+    "dateOfBirth": 560368800000,
+    "status": "ALIVE",
+    "capable": true,
+    "hasActualDocuments": true
+}
