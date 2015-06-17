@@ -1,5 +1,5 @@
 angular.module('egov.ui.uin')
-.controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc) {
+.controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc, $timeout) {
 
     var hintMsg = uinLcl[$scope.locale].hint, 
         typeText = uinLcl[$scope.locale].idtype;
@@ -28,12 +28,27 @@ angular.module('egov.ui.uin')
         }   
 
         if(newValue.length === 12){
-            if(!uinSrvc.valid(newValue)) return errorState(idType);
+            if(!uinSrvc.valid(newValue, idType)) return errorState(idType);
 
             $scope.state = 'disabled';
             $scope.hint = hintMsg.requesting;
 
+            uinSrvc.model.value = newValue;
+
             /* connct to rest here */
+            $timeout(function() {
+                uinSrvc.requestInfo(newValue, idType)
+                    .success(function (data) {
+                        console.log(data);
+                        $scope.state = '';
+                        $scope.hint = data.name.firstName +' '+ data.name.middleName +' '+ data.name.lastName;                        
+                    })
+                    .error(function (data, status) {
+                        $scope.state = 'error';
+                        if (status == '404') $scope.hint = "Not found"
+                        else scope.hint = "Internal error"    
+                    });
+            }, 3000);
         } 
     });
 

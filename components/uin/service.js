@@ -1,10 +1,17 @@
 angular.module('egov.ui.uin')
 .service('uinSrvc', ['$http', function ($http) {
+
     var service = this;
 
     this.model = {
         type: '',
-        value: ''
+        value: '',
+        shortInfo: ''
+    };
+
+    this.resetModel  = function(){
+        service.model.value = '';
+        service.model.shortInfo = '';
     };
 
     this.getType = function(value) {
@@ -19,7 +26,7 @@ angular.module('egov.ui.uin')
         return true;
     };
 
-   this.valid = function (value) {
+   this.valid = function (value,type) {
         if (!value || 12 != value.length || !/^\d*$/.test(value) || !service.isNums(value)) return !1;
         var k = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 
             l = [3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2], 
@@ -27,16 +34,24 @@ angular.module('egov.ui.uin')
             f = parseInt(value[2] + value[3]), e = value[4], g = value[5];
             parseInt(value.substring(6, 10));
             parseInt(value[6]);
-        for (var h = service.getType(value), c = 0;12 > c;c++) d[c] = parseInt(value[c]), 11 > c && (b += d[c] * k[c]);
+        for (var c = 0;12 > c;c++) d[c] = parseInt(value[c]), 11 > c && (b += d[c] * k[c]);
         b %= 11;
         if (10 === b) {
             for (c = b = 0;11 > c;c++) b += d[c] * l[c];
             b %= 11;
         }
-        if ("iin" === h) return b == d[11];
-        if ("bin" === h) {
+        if ("iin" === type) return b == d[11];
+        if ("bin" === type) {
             return b == d[11] && 0 <= m && 1 <= f && 12 >= f && (4 == e || 5 == e || 6 == e) && (0 <= g || 3 >= g);
         }
     };
+
+    /* work with REST */
+
+    this.requestInfo = function (uin,type) {
+        if(type === 'bin') return $http.get("rest/gbdul/organizations/" + uin)
+        else return $http.get("rest/gbdfl/persons/" + uin, {params: {infotype: 'short'}});   
+    };
+
     
 }]);
