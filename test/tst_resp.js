@@ -2,7 +2,8 @@ var fs = require('fs');
 
 module.exports = function(request, response){
 	setTimeout(function () {
-		var data_path ='./test/' + request.params.uin + '.json';
+		console.log("requesting ", request.params.uin);
+		var data_path =  __dirname + '/' + request.params.uin + '.json';
 		if(fs.existsSync(data_path)){
 			var r = require(data_path);
 			response.json(r);
