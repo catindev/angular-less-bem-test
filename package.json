@@ -37,6 +37,7 @@
     "gulp-wrap": "^0.11.0"
   },
   "dependencies": {
-    "express": "^4.12.4"
+    "express": "^4.12.4",
+    "gulp-clean": "^0.3.1"
   }
 }

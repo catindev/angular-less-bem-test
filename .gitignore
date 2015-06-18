@@ -1,6 +1,11 @@
 assets/vendors/
 node_modules
-components/build
+index.html
 npm-debug.log
 assets/components.js
+assets/build.js
 assets/components.css
+assets/build.css
+assets/vendors.js
+assets/vendors.css
+assets/angular.offline.js

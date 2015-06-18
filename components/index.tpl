@@ -1,16 +1,13 @@
 <!doctype html>
 <html lang="ru" ng-app="declaration">
 <head>
-<meta name="app" content="declaration-sandbox">
-<meta name="version" content="0.1.4">
-<meta name="build" content="18.06 22:37">
+<meta name="app" content="<app/>">
+<meta name="version" content="<version/>">
+<meta name="build" content="<build/>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <title ng-bind="'egov:' + dCtrl.locale['ru'].title"></title>
-
-<link rel="stylesheet" type="text/css" href="assets/vendors.css?v=1434645434552">
-<link rel="stylesheet" type="text/css" href="assets/build.css?v=1434645434552">
-
+<css/>
 </head>
 <body>
 
@@ -30,8 +27,5 @@
     </div>
  
 </body>
-
-<script src="assets/vendors.js?v=1434645434552"></script>
-<script src="assets/build.js?v=1434645434552"></script>
-
+<javascript/>
 </html>
