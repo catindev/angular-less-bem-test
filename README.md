@@ -1,3 +1,8 @@
-# Angular BEM = Angular-bem + Less
+# Declaration sandbox
 
-Demo app 
+Test egov.kz declaration UI.
+
+How to:
+* clone repo 
+* npm install
+* npm start
