@@ -6,8 +6,12 @@ angular.module('declaration', [ 'ngRoute', 'tenphi.bem', 'egov.ui.textbox', 'ego
             controller: 'step1Cntrllr'
         }).        
     otherwise({ redirectTo: '/' });
-}); 
-angular.module("declaration").run(["$templateCache", function($templateCache) {$templateCache.put("declaration/step1/template.html","\n<div elem=\"declaration-container\" ng-controller=\"step1Cntrllr as step1c\">\n    <div elem=\"input-box\" style=\"display:none;\">\n         <textbox label=\"{{ step1c.title }}\" value=\"step1c.uin\" state=\"{{ step1c.state }}\" hint=\"{{ step1c.uin_model.value }}\">\n        </textbox>               \n    </div>\n\n    <div elem=\"input-box\">\n         <egov-uin label=\"woop\" locale=\"ru\" info=\"step1c.uin_model.info\" value=\"step1c.uin_model.value\">\n        </egov-uin>               \n    </div>\n\n    <div elem=\"input-box\" ng-bind=\"step1c.uin_model.info\">           \n    </div>            \n\n    <div elem=\"actions\">\n        <button block=\"b-button\" ng-disabled=\"!step1c.uin_model.info\" mod=\"{ type: &apos;action&apos;, size: &apos;m&apos; }\">\n            {{ step1c.locale[\'ru\'].go_step2 }}\n        </button>\n    </div>\n</div>        ");}]);
+})
+.controller('declarationCntrllr', [ '$scope', 'declarationLcl', function($scope, declarationLcl) {
+	var declaration = this;
+	declaration.locale = declarationLcl;
+}]);
+angular.module("declaration").run(["$templateCache", function($templateCache) {$templateCache.put("declaration/step1/template.html","\n<div elem=\"declaration-container\" ng-controller=\"step1Cntrllr as step1c\">\n    <div elem=\"input-box\" style=\"display:none;\">\n         <textbox label=\"{{ step1c.title }}\" value=\"step1c.uin\" state=\"{{ step1c.state }}\" hint=\"{{ step1c.uin_model.value }}\">\n        </textbox>               \n    </div>\n\n    <div elem=\"input-box\">\n         <egov-uin locale=\"ru\" info=\"step1c.uin_model.info\" value=\"step1c.uin_model.value\">\n        </egov-uin>               \n    </div>\n\n    <div elem=\"input-box\" ng-bind=\"step1c.uin_model.info\">           \n    </div>            \n\n    <div elem=\"actions\">\n        <button block=\"b-button\" ng-disabled=\"!step1c.uin_model.info\" mod=\"{ type: &apos;action&apos;, size: &apos;m&apos; }\">\n            {{ step1c.locale[\'ru\'].go_step2 }}\n        </button>\n    </div>\n</div>        ");}]);
 angular.module('declaration', [ 'ngRoute', 'tenphi.bem', 'egov.ui.textbox', 'egov.ui.uin' ])
 .config(function($routeProvider) {
     $routeProvider.
@@ -16,12 +20,29 @@ angular.module('declaration', [ 'ngRoute', 'tenphi.bem', 'egov.ui.textbox', 'ego
             controller: 'step1Cntrllr'
         }).        
     otherwise({ redirectTo: '/' });
-}); 
-angular.module('declaration').controller('step1Cntrllr', [ '$scope', 'step1Lcl', function($scope, step1Lcl){
+})
+.controller('declarationCntrllr', [ '$scope', 'declarationLcl', function($scope, declarationLcl) {
+	var declaration = this;
+	declaration.locale = declarationLcl;
+}]);
+angular.module('declaration').constant('declarationLcl', {
+  "ru": {
+    "title": "Адресная справка"
+  },
+
+  "kz": {
+  	"title": "Адресная справка"
+  },
+  
+  "en": {
+	"title": "Адресная справка"
+  }
+});
+angular.module('declaration').controller('step1Cntrllr', [ 'step1Lcl', function(step1Lcl){
     var ctrl = this;
     ctrl.title = "ИИН ребёнка";
     ctrl.uin = "";
-    ctrl.state = "error";
+    ctrl.state = "";
 
     ctrl.uin_model = { value: '' };
 
@@ -31,11 +52,13 @@ angular.module('declaration').constant('step1Lcl', {
   "ru": {
     "go_step2": "Подписать и получить справку"
   },
+
   "kz": {
-
+	"go_step2": "Подписать и получить справку"
   },
+  
   "en": {
-
+  	"go_step2": "Подписать и получить справку"
   }
 });
 angular.module("declaration").run(["$templateCache", function($templateCache) {$templateCache.put("components/textbox/textbox.html","<div block=\"b-textbox\">\n\n    <label for=\"textbox_{{eid}}\" block=\"b-label\" mod=\"{ }\">\n    	<span ng-if=\"required === &apos;true&apos;\" elem=\"asteriks\">*</span>\n    	<span elem=\"caption\" mod=\"{ required: required }\" ng-bind=\"label\"></span>\n    </label>\n\n    <input ng-disabled=\"state === &apos;disabled&apos;\" id=\"textbox_{{eid}}\" block=\"b-input-text\" type=\"text\" mod=\"{ state: state }\" ng-model=\"value\">\n\n    <div ng-show=\"hint\" block=\"b-baloon-hint\" mod=\"{ state: state }\">\n        <div elem=\"tail\" mod=\"{ state: state }\"></div>\n        <div elem=\"message\" mod=\"{ state: state }\" ng-bind=\"hint\"></div>\n    </div>       \n</div>	");
@@ -165,6 +188,24 @@ angular.module('declaration').directive('viewMode', ['bemConfig', '$bem', functi
 }]);
 
 
+angular.module('egov.ui.textbox', [])
+    .directive('textbox', [function () {
+        return {
+            scope: {
+                label: '@',
+                value: '=',
+                required: '@',
+                state: '@',
+                hint:'@'
+            },
+            replace: true,
+            templateUrl: 'components/textbox/textbox.html',
+            restrict: "E",
+            link: function (scope, elem, attrs) { 
+                scope.eid = Math.random();
+            }
+        }
+    }]);
 angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
 .directive('egovUin', [ 'uinSrvc', function (uinSrvc) {
     return {
@@ -190,9 +231,10 @@ angular.module('egov.ui.uin')
     var hintMsg = uinLcl[$scope.locale].hint, 
         typeText = uinLcl[$scope.locale].idtype;
 
-     if(!$scope.label) 
+     if(!$scope.label) {
         if(!$scope.type) $scope.label = uinLcl[$scope.locale].default_title + typeText.other
         else $scope.label = uinLcl[$scope.locale].default_title + typeText[$scope.type];  
+     }
 
     function resetViewState() {
         $scope.state = '';
@@ -313,21 +355,3 @@ angular.module('egov.ui.uin')
 
     
 }]);
-angular.module('egov.ui.textbox', [])
-    .directive('textbox', [function () {
-        return {
-            scope: {
-                label: '@',
-                value: '=',
-                required: '@',
-                state: '@',
-                hint:'@'
-            },
-            replace: true,
-            templateUrl: 'components/textbox/textbox.html',
-            restrict: "E",
-            link: function (scope, elem, attrs) { 
-                scope.eid = Math.random();
-            }
-        }
-    }]);

@@ -1,5 +1,5 @@
 {
-  "name": "declaration sandbox",
+  "name": "declaration-sandbox",
   "version": "0.1.1",
   "description": "Test egov.kz declaration UI",
   "main": "",
@@ -9,8 +9,8 @@
   },
   "config" : { "port" : "3000" },
   "scripts": {
-    "start" : "node static.js",
-    "install" : "npm i && bower i && gulp build",
+    "prepare": "npm i && bower i && gulp build",
+    "start" : "npm run prepare && node static.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Inessoft",

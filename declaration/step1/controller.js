@@ -1,8 +1,8 @@
-angular.module('declaration').controller('step1Cntrllr', [ '$scope', 'step1Lcl', function($scope, step1Lcl){
+angular.module('declaration').controller('step1Cntrllr', [ 'step1Lcl', function(step1Lcl){
     var ctrl = this;
     ctrl.title = "ИИН ребёнка";
     ctrl.uin = "";
-    ctrl.state = "error";
+    ctrl.state = "";
 
     ctrl.uin_model = { value: '' };
 

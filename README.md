@@ -3,6 +3,5 @@
 Test egov.kz declaration UI.
 
 How to:
-* clone repo 
-* npm install
+* clone repo && cd repo
 * npm start

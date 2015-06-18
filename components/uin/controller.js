@@ -4,9 +4,10 @@ angular.module('egov.ui.uin')
     var hintMsg = uinLcl[$scope.locale].hint, 
         typeText = uinLcl[$scope.locale].idtype;
 
-     if(!$scope.label) 
+     if(!$scope.label) {
         if(!$scope.type) $scope.label = uinLcl[$scope.locale].default_title + typeText.other
         else $scope.label = uinLcl[$scope.locale].default_title + typeText[$scope.type];  
+     }
 
     function resetViewState() {
         $scope.state = '';

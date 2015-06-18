@@ -6,4 +6,8 @@ angular.module('declaration', [ 'ngRoute', 'tenphi.bem', 'egov.ui.textbox', 'ego
             controller: 'step1Cntrllr'
         }).        
     otherwise({ redirectTo: '/' });
-}); 
+})
+.controller('declarationCntrllr', [ '$scope', 'declarationLcl', function($scope, declarationLcl) {
+	var declaration = this;
+	declaration.locale = declarationLcl;
+}]);
