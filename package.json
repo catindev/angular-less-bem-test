@@ -1,16 +1,18 @@
 {
   "name": "declaration-sandbox",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Test egov.kz declaration UI",
   "main": "",
   "repository": "https://github.com/catindev/angular-less-bem-test.git",
   "directories": {
     "test": "tests"
   },
-  "config" : { "port" : "3000" },
+  "config": {
+    "port": "3000"
+  },
   "scripts": {
     "prepare": "npm i && bower i && gulp build",
-    "start" : "npm run prepare && node static.js",
+    "start": "npm run prepare && node static.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Inessoft",
