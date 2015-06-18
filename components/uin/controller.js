@@ -48,7 +48,7 @@ angular.module('egov.ui.uin')
                 .error(function (data, status) {
                     $scope.state = 'error';
                     if (status == '404') $scope.hint = typeText[idType] + hintMsg.not_found;
-                    else scope.hint = hintMsg.internal_error;    
+                    else $scope.hint = hintMsg.internal_error;    
                 });
         } 
     });

@@ -8,39 +8,64 @@ var uglify = require('gulp-uglify');
 var inline_image_path = require('gulp-inline-image-path');
 var uglify = require('gulp-uglify');
 
-
-gulp.task('html', function () {
-    return gulp.src('components/**/*.html')
-        .pipe(inline_image_path({path:"assets/images"}))
+gulp.task('declaration_html', function () {
+    return gulp.src([ 'declaration/**/*.html' ])
+        .pipe(inline_image_path({ path: "assets/images" }))
         .pipe(angularTemplates({
-            module: 'sandbox',
-            root: 'components/',
-            filename: 'templates.js'
+            module: 'declaration',
+            root: 'declaration/',
+            filename: 'dtemplates.js'
         }))
-        .pipe(gulp.dest('./components/build'));
+        .pipe(gulp.dest('assets/'));
 });
 
-gulp.task('js', function() {
-    return gulp.src([ 'components/build/templates.js', 'components/**/*.js' ])
+gulp.task('declaration', [ 'declaration_html' ], function() {
+    return gulp.src([ 'assets/dtemplates.js', 'declaration/**/*.js' ])
+        .pipe(concat('declaration.js'))
+        //.pipe(uglify({mangle: false}))
+        .pipe(gulp.dest('assets/'));
+});
+
+gulp.task('components_html', function () {
+    return gulp.src([ 'components/**/*.html' ])
+        .pipe(inline_image_path({ path: "assets/images" }))
+        .pipe(angularTemplates({
+            module: 'declaration',
+            root: 'components/',
+            filename: 'ctemplates.js'
+        }))
+        .pipe(gulp.dest('assets/'));
+});
+
+gulp.task('components', [ 'components_html' ], function() {
+    return gulp.src([ 'assets/ctemplates.js', 'components/**/*.js' ])
         .pipe(concat('components.js'))
         //.pipe(uglify({mangle: false}))
         .pipe(gulp.dest('assets/'));
 });
 
+gulp.task('js', [ 'components', 'declaration' ], function() {
+    return gulp.src([ 'declaration/app.js', 'assets/declaration.js', 'assets/components.js' ])
+        .pipe(concat('build.js'))
+        //.pipe(uglify({mangle: false}))
+        .pipe(gulp.dest('assets/'));
+});
+
 gulp.task('less', function() {
-    return  gulp.src([ 'components/**/*.less' ])
-    .pipe(concat('components.less'))
+    return  gulp.src([ 'components/**/*.less', 'declaration/**/*.less' ])
+    .pipe(concat('build.less'))
     .pipe(less()) 
     .pipe(minifyCSS({keepBreaks: false}))
     .pipe(gulp.dest('assets/'));
 });
 
-gulp.task('build', ['html', 'js', 'less']);
+gulp.task('build', [ 'js', 'less' ]);
 
 gulp.task('watch', ['build'], function() {
-    gulp.watch([ 'components/**/*.html'], ['html']);
-    gulp.watch([ 'components/build/templates.js', 'components/**/*.js' ], ['js']);
-    gulp.watch([ 'components/**/*.less' ], ['less']);
+    gulp.watch([ 'components/**/*.html', 'components/**/*.js' ], ['components']);
+    gulp.watch([ 'declaration/**/*.html', 'declaration/**/*.js' ], ['declaration']);
+    gulp.watch([ 'declaration/app.js', 'assets/components.js', 'assets/declaration.js' ], ['js']);
+    gulp.watch([ 'components/**/*.less', 'declaration/**/*.less' ], ['less']);
 });
 
 gulp.task('default', ['watch']);

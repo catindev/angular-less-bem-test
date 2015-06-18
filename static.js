@@ -1,7 +1,7 @@
 
 var express = require('express');
 var app = express();
-var test_resp = require('./tst_resp.js');
+var test_resp = require('./test/tst_resp.js');
 
 app.use(express.static('assets'));
 

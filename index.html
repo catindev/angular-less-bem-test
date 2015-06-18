@@ -3,73 +3,25 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Sandbox</title>
+    <title>Declaration</title>
     <link rel="stylesheet" type="text/css" href="assets/vendors/normalize.css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="assets/fonts/fonts.css">
     <link rel="stylesheet" type="text/css" href="assets/styles.css">
-    <link rel="stylesheet" type="text/css" href="assets/components.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" type="text/css" href="assets/build.css">
 </head>
-<body ng-app="sandbox">
+<body ng-app="declaration">
 
-
-<div class="layout">
-    <div class="header"></div>
-    <div class="wrapper">
-
-        <div block="b-declaration" ng-controller="sandCtrl as ctrl">
-            
-            <div elem="header">
-                <h1 elem="title">Адресная справка</h1>
-            </div>
-
-            <div elem="input-box" style="display:none;">
-                 <textbox 
-                    label="{{ ctrl.title }}" 
-                    value="ctrl.uin" 
-                    state="{{ ctrl.state }}"
-                    hint="{{ ctrl.uin_model.value }}">
-                </textbox>               
-            </div>
-
-            <div elem="input-box">
-                 <egov-uin
-                    
-                    locale="ru"
-                    info="ctrl.uin_model.info"
-                    value="ctrl.uin_model.value">
-                </egov-uin>               
-            </div>
-
-            <div elem="input-box" ng-bind="ctrl.uin_model.info">           
-            </div>            
-
-            <div elem="actions">
-                <button 
-                    block="b-button" 
-                    ng-disabled="!ctrl.uin_model.info" 
-                    mod="{ type: 'action', size: 'm' }">
-                    Подписать и получить справку
-                </button>
-            </div>
-                             
-        </div>        
+    <div class="layout">
+        <div class="header"></div>
+        <div class="wrapper">
+            <div ng-view></div>
+        </div>
+        <div class="footer"></div>   
     </div>
-    <div class="footer"></div>   
-</div>
  
 </body>
     <script src="assets/vendors/angular/angular.min.js"></script>
+    <script src="assets/vendors/angular-route/angular-route.min.js"></script>
     <script src="assets/vendors/angular-bem/angular-bem.js"></script>
-    <script>
-        angular.module('sandbox', [ 'tenphi.bem', 'egov.ui.textbox', 'egov.ui.uin' ])
-            .controller('sandCtrl', function($scope){
-                var ctrl = this;
-                ctrl.title = "ИИН ребёнка";
-                ctrl.uin = "";
-                ctrl.state = "";
-
-                ctrl.uin_model = { value: '' };
-            });
-    </script>
-    <script src="assets/components.js"></script>
+    <script src="assets/build.js"></script>
 </html>

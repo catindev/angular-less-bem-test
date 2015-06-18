@@ -1,4 +1,4 @@
-angular.module('sandbox').directive('viewMode', ['bemConfig', '$bem', function (bemConfig, $bem) {
+angular.module('declaration').directive('viewMode', ['bemConfig', '$bem', function (bemConfig, $bem) {
     return {
         restrict: 'A',
         require: ['?block', '?elem'],

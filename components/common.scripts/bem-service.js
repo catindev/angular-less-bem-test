@@ -1,4 +1,4 @@
-angular.module("sandbox").service('$bem', ['$settings', function ($settings) {
+angular.module("declaration").service('$bem', ['$settings', function ($settings) {
 
     var me = this;
 
