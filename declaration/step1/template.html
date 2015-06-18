@@ -1,10 +1,5 @@
 
-<div block="b-declaration" ng-controller="step1Cntrllr as step1c">
-    
-    <div elem="header">
-        <h1 elem="title">Адресная справка</h1>
-    </div>
-
+<div elem="declaration-container" ng-controller="step1Cntrllr as step1c">
     <div elem="input-box" style="display:none;">
          <textbox 
             label="{{ step1c.title }}" 
@@ -34,5 +29,4 @@
             {{ step1c.locale['ru'].go_step2 }}
         </button>
     </div>
-                     
 </div>        
