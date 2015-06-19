@@ -1,14 +1,17 @@
-angular.module("declaration").service('$bem', ['$settings', function ($settings) {
+angular.module('egov.ui.common',['tenphi.bem'])
+.service('egovSettings', [ function () {
 
-    var me = this;
+    var settings = this;
 
-    // device:      pod | pep
-    // fontSize:    pod-large | pod-largest | pep-large | pep-largest
-    // contrast:    black | white
-
-    var _device = null;
-    var _fontSize = null;
-    var _contrast = null;
+/*    
+    device:      desktop | pod
+    font_size:   desktop | desktop-big | pod | pod-big
+    contrast:    light | dark
+*/
+    
+    var device = 'desktop',
+        font_size = 'desktop',
+        contrast = '';
 
     this.getDevice = function () { return _device; }
     this.setDevice = function (device) { _device = device; }
@@ -31,6 +34,4 @@ angular.module("declaration").service('$bem', ['$settings', function ($settings)
     }
 
     initialize();
-
-    return this;
 }]);

@@ -6,7 +6,7 @@
 <meta name="build" content="<build/>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title ng-bind="'egov:' + dCtrl.locale['ru'].title"></title>
+<title>Declaration sandbox</title>
 <css/>
 </head>
 <body>

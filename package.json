@@ -12,7 +12,8 @@
   },
   "scripts": {
     "prepare": "npm i && bower i && gulp build",
-    "start": "npm run prepare && node static.js",
+    "static": "node test/static.js",
+    "start": "npm run prepare && npm run static",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Inessoft",
