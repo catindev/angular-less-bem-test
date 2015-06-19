@@ -1,5 +1,5 @@
 angular.module('egov.ui.uin')
-.controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc) {
+.controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc, $rootScope) {
 
     var hintMsg = uinLcl[$scope.locale].hint, 
         typeText = uinLcl[$scope.locale].idtype;
@@ -41,6 +41,7 @@ angular.module('egov.ui.uin')
             $scope.state = 'disabled';
             $scope.hint = hintMsg.requesting;
 
+
             uinSrvc.requestInfo(newValue, idType)
                 .success(function (data) {
                     if(idType === 'iin') $scope.info  = data.name.firstName +' '+ data.name.middleName +' '+ data.name.lastName
@@ -55,5 +56,9 @@ angular.module('egov.ui.uin')
                 });
         } 
     });
+
+    $rootScope.$on("rest.response:uin", function(event, data) { 
+        console.log("rest response for uin:", data);
+    }); 
 
 });

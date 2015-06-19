@@ -1,4 +1,10 @@
-angular.module('declaration', [ 'ngRoute', 'tenphi.bem', 'egov.ui.textbox', 'egov.ui.uin' ])
+angular.module('declaration', [ 
+    'ngRoute', 
+    'tenphi.bem', 
+    'egov.ui.rest',
+    'egov.ui.textbox', 
+    'egov.ui.uin' 
+])
 
 
 .config(function($routeProvider) {
@@ -17,6 +23,11 @@ angular.module('declaration', [ 'ngRoute', 'tenphi.bem', 'egov.ui.textbox', 'ego
 .config(['$compileProvider', function ($compileProvider) {
   // disable debug info
   $compileProvider.debugInfoEnabled(false);
+}])
+
+.run([ '$rootScope', 'egovRest', function($rootScope, egovRest){
+    //egovRest.ear();
+    $rootScope.$broadcast("rest.api", { publisher: 'app' });
 }])
 
 .controller('declarationCntrllr', [ '$scope', 'declarationLcl', function($scope, declarationLcl) {
