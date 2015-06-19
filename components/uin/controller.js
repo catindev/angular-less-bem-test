@@ -1,13 +1,16 @@
 angular.module('egov.ui.uin')
 .controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc) {
 
-    var hintMsg = uinLcl[$scope.locale].hint, 
+    var uin = this,
+        hintMsg = uinLcl[$scope.locale].hint, 
         typeText = uinLcl[$scope.locale].idtype;
 
-     if(!$scope.label) {
-        if(!$scope.type) $scope.label = uinLcl[$scope.locale].default_title + typeText.other
-        else $scope.label = uinLcl[$scope.locale].default_title + typeText[$scope.type];  
-     }
+    if(!$scope.title) { // default title
+        if(!$scope.type) $scope.title = uinLcl[$scope.locale].default_title + typeText.other
+        else $scope.title = uinLcl[$scope.locale].default_title + typeText[$scope.type];  
+    }
+
+    if($scope.type && ($scope.type === 'bin' || $scope.type === 'iin')) uinSrvc.type = $scope.type;
 
     function resetViewState() {
         $scope.state = '';

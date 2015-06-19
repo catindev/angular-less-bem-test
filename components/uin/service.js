@@ -3,7 +3,7 @@ angular.module('egov.ui.uin')
 
     var service = this;
 
-    this.model = { type: '' };
+    this.type = '';
 
     this.resetModel  = function(){
         service.model.value = '';
@@ -11,7 +11,7 @@ angular.module('egov.ui.uin')
     };
 
     this.getType = function(value) {
-        if (service.model.type) return service.model.type;
+        if (service.type) return service.type;
         if( value[4] >= 4 && value[4] <= 6 ) return 'bin';
         if( value[4] >= 0 && value[4] <= 3 ) return 'iin';
         return 'other';
@@ -22,7 +22,7 @@ angular.module('egov.ui.uin')
         return true;
     };
 
-   this.valid = function (value,type) {
+    this.valid = function (value,type) {
         if (!value || 12 != value.length || !/^\d*$/.test(value) || !service.isNums(value)) return !1;
         var k = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 
             l = [3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2], 
@@ -40,14 +40,11 @@ angular.module('egov.ui.uin')
         if ("bin" === type) {
             return b == d[11] && 0 <= m && 1 <= f && 12 >= f && (4 == e || 5 == e || 6 == e) && (0 <= g || 3 >= g);
         }
-    };
-
-    /* work with REST */
+    }; 
 
     this.requestInfo = function (uin,type) {
         if(type === 'bin') return $http.get("rest/gbdul/organizations/" + uin)
         else return $http.get("rest/gbdfl/persons/" + uin, {params: {infotype: 'short'}});   
     };
 
-    
 }]);
