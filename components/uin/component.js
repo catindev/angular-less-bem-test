@@ -1,8 +1,8 @@
 angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
-.directive('egovUin', [ 'uinSrvc', function (uinSrvc) {
+.directive('egovUin', [ function () {
     return {
         scope: {
-            label: '@',
+            uin_title: '@',
             value: '=',
             type: '@',
             locale: '@',
@@ -11,7 +11,6 @@ angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
         templateUrl: 'components/uin/template.html',
         restrict: "E",
         replace: true,
-        controller: 'uinCntrllr',
-        controlleras: 'uin'
-    }
+        controller: 'uinCntrllr'
+    }            
 }]);

@@ -14,6 +14,10 @@ angular.module('declaration', [ 'ngRoute', 'tenphi.bem', 'egov.ui.textbox', 'ego
     otherwise({ redirectTo: '/' });
 })
 
+.config(['$compileProvider', function ($compileProvider) {
+  // disable debug info
+  $compileProvider.debugInfoEnabled(false);
+}])
 
 .controller('declarationCntrllr', [ '$scope', 'declarationLcl', function($scope, declarationLcl) {
 	var declaration = this;
