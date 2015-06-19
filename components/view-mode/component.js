@@ -1,4 +1,25 @@
-angular.module('declaration').directive('viewMode', ['bemConfig', '$bem', function (bemConfig, $bem) {
+angular.module('egov.ui.view_mode', [ 'tenphi.bem' ])
+
+.service('egovViewSettings', [ function () {
+
+/*    
+    device:      desktop | pod
+    font_size:   desktop | desktop-big | pod | pod-big
+    contrast:    light | dark
+*/
+    
+    var device = 'desktop',
+        font_size = '',
+        contrast = '',
+        devices = [ 'pod', 'desktop' ];
+
+    function init() {
+    };
+
+    init();
+}])
+
+.directive('viewMode', ['bemConfig', 'egovViewSettings', function (bemConfig, egovViewSettings) {
     return {
         restrict: 'A',
         require: ['?block', '?elem'],
@@ -84,5 +105,6 @@ angular.module('declaration').directive('viewMode', ['bemConfig', '$bem', functi
             });
         }
     }
-}]);
+}])
 
+.run([ '$rootScope', 'egovViewSettings', function($rootScope, egovViewSettings){ }]);

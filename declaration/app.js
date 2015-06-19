@@ -21,13 +21,8 @@ angular.module('declaration', [
 })
 
 .config(['$compileProvider', function ($compileProvider) {
-  // disable debug info
+  // конфигурация услуги
   $compileProvider.debugInfoEnabled(false);
-}])
-
-.run([ '$rootScope', 'egovRest', function($rootScope, egovRest){
-    //egovRest.ear();
-    $rootScope.$broadcast("rest.api", { publisher: 'app' });
 }])
 
 .controller('declarationCntrllr', [ '$scope', 'declarationLcl', function($scope, declarationLcl) {

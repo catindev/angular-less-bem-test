@@ -1,5 +1,5 @@
 angular.module('egov.ui.uin')
-.service('uinSrvc', ['$http', '$rootScope', function ($http, $rootScope) {
+.service('uinSrvc', [ '$rootScope', function ($rootScope) {
 
     var service = this;
 
@@ -43,10 +43,20 @@ angular.module('egov.ui.uin')
     }; 
 
     this.requestInfo = function (uin,type) {
-        $rootScope.$emit('rest.request', {publisher: 'uin'});
-        
-        if(type === 'bin') return $http.get("rest/gbdul/organizations/" + uin)
-        else return $http.get("rest/gbdfl/persons/" + uin, {params: {infotype: 'short'}});   
+        var request = {
+            module: 'egov.ui.uin',
+            method: 'GET',
+            url: '',
+            params: { }
+        };
+
+        if(type === 'bin') request.url = "gbdul/organizations/" + uin
+        else {
+            request.url = "gbdfl/persons/" + uin;
+            request.params = { infotype: 'short' };
+        }  
+
+        return $rootScope.$emit('rest.request', request);  
     };
 
 }]);

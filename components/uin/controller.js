@@ -2,7 +2,8 @@ angular.module('egov.ui.uin')
 .controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc, $rootScope) {
 
     var hintMsg = uinLcl[$scope.locale].hint, 
-        typeText = uinLcl[$scope.locale].idtype;
+        typeText = uinLcl[$scope.locale].idtype,
+        idType;
 
     if(!$scope.uin_title) { 
         if(!$scope.type) $scope.uin_title = uinLcl[$scope.locale].default_title + typeText.other
@@ -25,7 +26,7 @@ angular.module('egov.ui.uin')
 
     $scope.$watch('value', function(newValue, oldValue) {
         resetViewState();
-        var idType = uinSrvc.getType(newValue);
+        idType = uinSrvc.getType(newValue);
 
         if(newValue && newValue.length > 12) $scope.value = oldValue;
 
@@ -35,30 +36,29 @@ angular.module('egov.ui.uin')
                 return;
         }   
 
-        if(newValue.length === 12){
+        if(newValue.length === 12) {
             if(!uinSrvc.valid(newValue, idType)) return errorState(idType);
 
             $scope.state = 'disabled';
             $scope.hint = hintMsg.requesting;
 
-
-            uinSrvc.requestInfo(newValue, idType)
-                .success(function (data) {
-                    if(idType === 'iin') $scope.info  = data.name.firstName +' '+ data.name.middleName +' '+ data.name.lastName
-                    if(idType === 'bin') $scope.info  = data.fullName;    
-                    $scope.state = '';
-                    $scope.hint = $scope.info ;                       
-                })
-                .error(function (data, status) {
-                    $scope.state = 'error';
-                    if (status == '404') $scope.hint = typeText[idType] + hintMsg.not_found;
-                    else $scope.hint = hintMsg.internal_error;    
-                });
+            uinSrvc.requestInfo(newValue, idType);
         } 
     });
 
-    $rootScope.$on("rest.response:uin", function(event, data) { 
-        console.log("rest response for uin:", data);
-    }); 
+    $rootScope.$on( "rest.response:egov.ui.uin:success", 
+        function(event, response) { 
+            if(idType === 'iin') $scope.info  = response.data.name.firstName +' '+ response.data.name.middleName +' '+ response.data.name.lastName;
+            if(idType === 'bin') $scope.info  = response.data.fullName;    
+            $scope.state = '';
+            $scope.hint = $scope.info ; 
+        });
+
+    $rootScope.$on( "rest.response:egov.ui.uin:error", 
+        function(event, response) { 
+            $scope.state = 'error';
+            if (response.status === '404') $scope.hint = typeText[idType] + hintMsg.not_found;
+            else $scope.hint = hintMsg.internal_error;    
+        });     
 
 });
