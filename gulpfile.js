@@ -77,9 +77,9 @@ gulp.task('vendors-css', function(){
 gulp.task('less', function() {
     return  gulp.src([ 'components/**/*.less', 'declaration/**/*.less' ])
     .pipe(less()) 
-    .pipe(concat('build.less'))
+    .pipe(concat('build.css'))
     .pipe(autoprefixer('last 10 versions', 'ie 9'))  
-    .pipe(minifyCSS({keepBreaks: false}))
+    //.pipe(minifyCSS({keepBreaks: false}))
     .pipe(gulp.dest('assets/'));
 });
 

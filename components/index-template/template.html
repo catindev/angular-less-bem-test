@@ -7,23 +7,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <title>Declaration sandbox</title>
+<style type="text/css">
+html, body { 
+    font: 14px 'Ubuntu', Verdana, Arial, sans-serif;  
+    background: #000;
+    height:100%;
+}
+</style>
 <css/>
 </head>
 <body>
 
-    <div block="b-layout">
-        <div class="header"></div>
+    <div block="b-page">
+        <div block="b-page-header"></div>
 
-        <div class="wrapper">
+        <div block="b-wrapper">
             <div block="b-declaration" ng-controller="declarationCntrllr as dCtrl">
-                <div elem="header">
-                    <h1 elem="title" ng-bind="dCtrl.locale['ru'].title"></h1>
-                </div>           
+                <h1 elem="header" mod="{ 'size': 1 }">
+                    {{ dCtrl.locale['ru'].title }}
+                </h1>           
                 <div ng-view></div>
             </div>
         </div>
 
-        <div class="footer"></div>   
+        <div block="b-page-footer"></div>   
     </div>
  
 </body>

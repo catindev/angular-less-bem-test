@@ -1,15 +1,8 @@
 
 <div elem="declaration-container" ng-controller="step1Cntrllr as step1c">
-    <div elem="input-box" style="display:none;">
-         <textbox 
-            label="{{ step1c.title }}" 
-            value="step1c.uin" 
-            state="{{ step1c.state }}"
-            hint="{{ step1c.uin_model.value }}">
-        </textbox>               
-    </div>
 
     <div elem="input-box">
+        <h2 block="b-header" mod="{ 'size': 2 }">Получить справку</h2>
          <egov-uin
             title="{{ step1c.locale['ru'].id_input }}"
             locale="ru"

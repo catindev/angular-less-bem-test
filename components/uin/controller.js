@@ -5,9 +5,9 @@ angular.module('egov.ui.uin')
         typeText = uinLcl[$scope.locale].idtype,
         idType;
 
-    if(!$scope.uin_title) { 
-        if(!$scope.type) $scope.uin_title = uinLcl[$scope.locale].default_title + typeText.other
-        else $scope.uin_title = uinLcl[$scope.locale].default_title + typeText[$scope.type];  
+    if(!$scope.title) { 
+        if(!$scope.type) $scope.title = uinLcl[$scope.locale].default_title + typeText.other
+        else $scope.title = uinLcl[$scope.locale].default_title + typeText[$scope.type];  
     }
 
     if($scope.type && ($scope.type === 'bin' || $scope.type === 'iin')) uinSrvc.type = $scope.type;
