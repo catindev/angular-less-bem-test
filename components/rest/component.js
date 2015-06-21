@@ -1,12 +1,17 @@
-angular.module('egov.ui.rest',[])
+angular.module('egov.ui.rest',[ 'ngCookies' ])
 .factory('egovRest', 
-    function ($rootScope, $http) {
+    function ($rootScope, $http, $cookies) {
+
+        function log(type, content){
+            if ($cookies.uiDebug) console[type](content);
+        }
 
         function _defaults(options) {
+            var uri = options.uri || options.url || '';
             return {
                 module: options.module || 'declaration',
                 method: options.method || 'GET',
-                url: '/rest/' + options.url,
+                url: '/rest/' + uri,
                 params: options.params || {},
                 headers: options.headers || {}
             };            
@@ -23,19 +28,19 @@ angular.module('egov.ui.rest',[])
 
         $rootScope.$on("rest.request", function(event, options) { 
             options = _defaults(options);
-            console.info("egov.ui.rest: request from ", options.module );
+            log('info', 'egov.ui.rest: request from' + options.module );
             $http(options)
                 .success(function (data, status, headers, config) {
-                    console.info( "egov.ui.rest: success for", options.module );
+                    log('info', 'egov.ui.rest: success for ' + options.module );
                     return _response( options.module, 'success', data, status, headers, config );  
                 })
                 .error(function (data, status, headers, config) {
-                    console.error( "egov.ui.rest: error for", options.module );
+                    log('error', 'egov.ui.rest: error for' + options.module );
                     return _response( options.module, 'error', data, status, headers, config ); 
                 });                      
         }); 
 
-        console.info('egov.ui.rest is working');
+        log('info', 'egov.ui.rest is working');
 
         return { };
     }

@@ -46,13 +46,13 @@ angular.module('egov.ui.uin')
         var request = {
             module: 'egov.ui.uin',
             method: 'GET',
-            url: '',
+            uri: '',
             params: { }
         };
 
-        if(type === 'bin') request.url = "gbdul/organizations/" + uin
+        if(type === 'bin') request.uri = "gbdul/organizations/" + uin
         else {
-            request.url = "gbdfl/persons/" + uin;
+            request.uri = "gbdfl/persons/" + uin;
             request.params = { infotype: 'short' };
         }  
 

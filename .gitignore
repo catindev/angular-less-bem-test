@@ -5,6 +5,7 @@ npm-debug.log
 assets/components.js
 assets/build.js
 assets/components.css
+assets/build.less
 assets/build.css
 assets/vendors.js
 assets/vendors.css

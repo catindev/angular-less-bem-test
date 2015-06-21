@@ -2,7 +2,7 @@ angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
 .directive('egovUin', [ function () {
     return {
         scope: {
-            uin_title: '@',
+            title: '@',
             value: '=',
             type: '@',
             locale: '@',

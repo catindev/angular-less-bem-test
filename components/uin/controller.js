@@ -57,7 +57,7 @@ angular.module('egov.ui.uin')
     $rootScope.$on( "rest.response:egov.ui.uin:error", 
         function(event, response) { 
             $scope.state = 'error';
-            if (response.status === '404') $scope.hint = typeText[idType] + hintMsg.not_found;
+            if (response.status === 404) $scope.hint = typeText[idType] + hintMsg.not_found;
             else $scope.hint = hintMsg.internal_error;    
         });     
 

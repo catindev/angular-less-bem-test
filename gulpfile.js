@@ -76,8 +76,8 @@ gulp.task('vendors-css', function(){
 
 gulp.task('less', function() {
     return  gulp.src([ 'components/**/*.less', 'declaration/**/*.less' ])
-    .pipe(concat('build.less'))
     .pipe(less()) 
+    .pipe(concat('build.less'))
     .pipe(autoprefixer('last 10 versions', 'ie 9'))  
     .pipe(minifyCSS({keepBreaks: false}))
     .pipe(gulp.dest('assets/'));
@@ -107,9 +107,7 @@ gulp.task('build', [ 'vendors-js', 'vendors-css', 'js', 'less' ], function(){
 });
 
 gulp.task('watch', ['build'], function() {
-    gulp.watch([ 'components/**/*.html', 'components/**/*.js' ], ['components']);
-    gulp.watch([ 'declaration/**/*.html', 'declaration/**/*.js' ], ['declaration']);
-    gulp.watch([ 'declaration/app.js', 'assets/components.js', 'assets/declaration.js' ], ['js']);
+    gulp.watch([ 'components/**/*.html', 'components/**/*.js', 'declaration/**/*.html', 'declaration/**/*.js', 'declaration/app.js' ], ['js']);
     gulp.watch([ 'components/**/*.less', 'declaration/**/*.less' ], ['less']);
 });
 
