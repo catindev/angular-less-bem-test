@@ -3,7 +3,8 @@ angular.module('declaration', [
     'tenphi.bem', 
     'egov.ui.rest',
     'egov.ui.textbox', 
-    'egov.ui.uin' 
+    'egov.ui.uin',
+    'egov.ui.view_mode'
 ])
 
 
@@ -20,9 +21,13 @@ angular.module('declaration', [
     otherwise({ redirectTo: '/' });
 })
 
-.config(['$compileProvider', function ($compileProvider) {
+.config([ '$compileProvider', function ($compileProvider) {
   // конфигурация услуги
   $compileProvider.debugInfoEnabled(false);
+}])
+
+.run([ '$rootScope', function($rootScope){
+   $rootScope.debug = false; 
 }])
 
 .controller('declarationCntrllr', [ '$scope', 'declarationLcl', function($scope, declarationLcl) {

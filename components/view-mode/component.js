@@ -8,30 +8,41 @@ angular.module('egov.ui.view_mode', [ 'tenphi.bem' ])
     contrast:    light | dark
 */
     
-    var device = 'desktop',
-        font_size = '',
-        contrast = '',
-        devices = [ 'pod', 'desktop' ];
-
-    function init() {
+    var model = {
+        device: 'desktop',
+        font_size: 'desktop',
+        contrast: '',
     };
 
-    init();
+    this.attr = function(name, value){
+        if( name in model ){
+            if( value ) {
+               model[name] = value;
+               return value; 
+            } else return model[name];    
+        } else return false;
+    };
+
+    this.config = function(options) {
+        for( var key in options ) {
+            if(key in model) model[key] = options[key];
+        }
+    };
+
 }])
 
-.directive('viewMode', ['bemConfig', 'egovViewSettings', function (bemConfig, egovViewSettings) {
+.directive('egovViewMode', ['bemConfig', 'egovViewSettings', function (bemConfig, egovViewSettings) {
     return {
         restrict: 'A',
         require: ['?block', '?elem'],
         link: function (scope, el, attrs, ctrls) {
             var ctrl = ctrls[0] || ctrls[1];
+
             var currentDevice = null;
             var currentFontSize = null;
             var currentContrast = null;
 
-            if (!ctrl) {
-                return;
-            }
+            if (!ctrl) return;
 
             var classListSupport = !!document.createElement('div').classList, addClass, removeClass;
             if (classListSupport) {
@@ -54,9 +65,10 @@ angular.module('egov.ui.view_mode', [ 'tenphi.bem' ])
             }
 
             scope.$watch(function () {
-                return $bem.getDevice();
+                return egovViewSettings.attr('device');
             }, function (modValue) {
                 var modName = 'device';
+
                 var className = bemConfig.generateClass(ctrl.blockName, ctrl.elemName, modName, modValue);
 
                 if (currentDevice)
@@ -71,40 +83,37 @@ angular.module('egov.ui.view_mode', [ 'tenphi.bem' ])
             });
 
             scope.$watch(function () {
-                return $bem.getFontSize();
+                return egovViewSettings.attr('font_size');
             }, function (modValue) {
                 var modName = 'font-size';
                 var className = bemConfig.generateClass(ctrl.blockName, ctrl.elemName, modName, modValue);
 
-                if (currentFontSize)
-                    removeClass(el, currentFontSize);
+                if (currentFontSize) removeClass(el, currentFontSize);
 
                 if (modValue) {
                     addClass(el, className);
                     currentFontSize = className;
-                } else {
-                    currentFontSize = null;
-                }
+                } else currentFontSize = null;
             });
 
             scope.$watch(function () {
-                return $bem.getContrast();
+                return egovViewSettings.attr('contrast');
             }, function (modValue) {
                 var modName = 'contrast';
                 var className = bemConfig.generateClass(ctrl.blockName, ctrl.elemName, modName, modValue);
 
-                if (currentContrast)
-                    removeClass(el, currentContrast);
+                if (currentContrast) removeClass(el, currentContrast);
 
                 if (modValue) {
                     addClass(el, className);
                     currentContrast = className;
-                } else {
-                    currentContrast = null;
-                }
+                } else currentContrast = null;
             });
         }
     }
 }])
 
-.run([ '$rootScope', 'egovViewSettings', function($rootScope, egovViewSettings){ }]);
+.run([ 'egovViewSettings', function(egovViewSettings){ 
+
+
+}]);

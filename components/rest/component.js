@@ -1,9 +1,9 @@
-angular.module('egov.ui.rest',[ 'ngCookies' ])
+angular.module('egov.ui.rest',[ ])
 .factory('egovRest', 
-    function ($rootScope, $http, $cookies) {
+    function ($rootScope, $http) {
 
         function log(type, content){
-            if ($cookies.uiDebug) console[type](content);
+            if ($rootScope.debug) console[type](content);
         }
 
         function _defaults(options) {
@@ -28,21 +28,21 @@ angular.module('egov.ui.rest',[ 'ngCookies' ])
 
         $rootScope.$on("rest.request", function(event, options) { 
             options = _defaults(options);
-            log('info', 'egov.ui.rest: request from' + options.module );
+            log('info', 'egov.ui.rest: request from ' + options.module );
             $http(options)
                 .success(function (data, status, headers, config) {
                     log('info', 'egov.ui.rest: success for ' + options.module );
                     return _response( options.module, 'success', data, status, headers, config );  
                 })
                 .error(function (data, status, headers, config) {
-                    log('error', 'egov.ui.rest: error for' + options.module );
+                    log('error', 'egov.ui.rest: error for ' + options.module );
                     return _response( options.module, 'error', data, status, headers, config ); 
                 });                      
         }); 
 
-        log('info', 'egov.ui.rest is working');
-
         return { };
     }
 )
-.run([ '$rootScope', 'egovRest', function($rootScope, egovRest){}]);
+.run([ '$rootScope', 'egovRest', function($rootScope, egovRest){
+    console.info('egov.ui.rest is working');
+}]);
