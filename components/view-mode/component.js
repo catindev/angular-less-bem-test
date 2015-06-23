@@ -31,7 +31,7 @@ angular.module('egov.ui.view_mode', [ 'tenphi.bem' ])
 
 }])
 
-.directive('egovViewMode', ['bemConfig', 'egovViewSettings', function (bemConfig, egovViewSettings) {
+.directive('evm', ['bemConfig', 'egovViewSettings', function (bemConfig, egovViewSettings) {
     return {
         restrict: 'A',
         require: ['?block', '?elem'],

@@ -22,9 +22,9 @@ html, body {
         <div block="b-page-header"></div>
 
         <div block="b-wrapper">
-            <div block="b-declaration" ng-controller="declarationCntrllr as dCtrl">
+            <div block="b-declaration" ng-controller="declarationController as Main">
                 <h1 elem="header" mod="{ 'size': 1 }">
-                    {{ dCtrl.locale['ru'].title }}
+                    {{ 'title' | translate }}
                 </h1>           
                 <div ng-view></div>
             </div>

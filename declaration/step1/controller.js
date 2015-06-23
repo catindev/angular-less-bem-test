@@ -1,12 +1,15 @@
-angular.module('declaration')
+angular.module('declaration').controller('step1Controller', 
+	function($rootScope, egovLocale) {
 
-.controller('step1Cntrllr', [ 'step1Lcl', '$rootScope', function(step1Lcl, $rootScope) {
-    
-	$rootScope.debug = true;
-	
-    var step1 = this;
-    
-    step1.uin_model = { value: '' };
+    	$rootScope.debug = true;
 
-    step1.locale = step1Lcl;
-}]);
+        var step1 = this;
+        
+        step1.uin = { value: '' };
+
+        step1.chnglcl = function () {
+        	egovLocale.set('kk');
+        };
+
+    }
+);

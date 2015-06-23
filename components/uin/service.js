@@ -1,23 +1,23 @@
-angular.module('egov.ui.uin')
-.service('uinSrvc', [ '$rootScope', function ($rootScope) {
+angular.module('egov.ui.uin').service('uinService', 
+    function ($rootScope) {
 
     var service = this;
 
     this.type = '';
 
-    this.resetModel  = function(){
+    this.resetModel  = function () {
         service.model.value = '';
         service.model.shortInfo = '';
     };
 
-    this.getType = function(value) {
+    this.getType = function (value) {
         if (service.type) return service.type;
         if( value[4] >= 4 && value[4] <= 6 ) return 'bin';
         if( value[4] >= 0 && value[4] <= 3 ) return 'iin';
         return 'other';
     }
 
-    this.isNums = function(value){
+    this.isNums = function (value) {
         if(!/^[0-9]+$/.test(value)) return false;
         return true;
     };
@@ -59,4 +59,4 @@ angular.module('egov.ui.uin')
         return $rootScope.$emit('rest.request', request);  
     };
 
-}]);
+});

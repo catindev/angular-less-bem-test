@@ -1,6 +1,7 @@
 angular.module('declaration', [ 
     'ngRoute', 
     'tenphi.bem', 
+    'egov.ui.i18n',
     'egov.ui.rest',
     'egov.ui.textbox', 
     'egov.ui.uin',
@@ -8,29 +9,23 @@ angular.module('declaration', [
 ])
 
 
-.config(function($routeProvider) {
+.config(function ($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl: 'declaration/step1/template.html',
-            controller: 'step1Cntrllr'
+            controller: 'step1Controller'
         }). 
         when('/step2', {
             templateUrl: 'declaration/step1/template.html',
-            controller: 'step2Cntrllr'
+            controller: 'step2Controller'
         }).                
-    otherwise({ redirectTo: '/' });
+        otherwise({ redirectTo: '/' });
 })
 
-.config([ '$compileProvider', function ($compileProvider) {
-  // конфигурация услуги
-  $compileProvider.debugInfoEnabled(false);
-}])
+.controller('declarationController', 
+    function ($rootScope) {
+	
+        var declaration = this;
 
-.run([ '$rootScope', function($rootScope){
-   $rootScope.debug = false; 
-}])
-
-.controller('declarationCntrllr', [ '$scope', 'declarationLcl', function($scope, declarationLcl) {
-	var declaration = this;
-	declaration.locale = declarationLcl;
-}]);
+    }
+);

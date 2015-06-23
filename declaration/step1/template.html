@@ -1,25 +1,26 @@
 
-<div elem="declaration-container" ng-controller="step1Cntrllr as step1c">
+<div elem="declaration-container" ng-controller="step1Controller as s1c">
 
     <div elem="input-box">
         <h2 block="b-header" mod="{ 'size': 2 }">Получить справку</h2>
          <egov-uin
-            title="{{ step1c.locale['ru'].id_input }}"
-            locale="ru"
-            info="step1c.uin_model.info"
-            value="step1c.uin_model.value">
+            locale="{{ s1c.locale }}"
+            info="s1c.uin.info"
+            value="s1c.uin.value">
         </egov-uin>               
     </div>
-
-    <div elem="input-box" ng-bind="step1c.uin_model.info">           
+    
+    <div elem="input-box" ng-show="s1c.uin.info">
+        НАЙДЕН <span ng-bind="s1c.uin.info"></span>
     </div>            
 
     <div elem="actions">
         <button 
             block="b-button" 
-            ng-disabled="!step1c.uin_model.info" 
-            mod="{ type: 'action', size: 'm' }">
-            {{ step1c.locale['ru'].go_step2 }}
+            ng-disabled="!s1c.uin.info" 
+            mod="{ type: 'action', size: 'm' }"
+            ng-click=" s1c.chnglcl() ">
+            {{ 'step1.go_to_step_2' | translate }}
         </button>
     </div>
 </div>        

@@ -1,16 +1,14 @@
-angular.module('egov.ui.uin')
-.controller('uinCntrllr', function($scope, $element, $attrs, uinLcl, uinSrvc, $rootScope) {
+angular.module('egov.ui.uin').controller('uinController', 
+    function($scope, $element, $attrs, $filter, uinService, $rootScope) {
 
-    var hintMsg = uinLcl[$scope.locale].hint, 
-        typeText = uinLcl[$scope.locale].idtype,
-        idType;
+    function T (text) {
+        return $filter('translate')(text);
+    };    
 
-    if(!$scope.title) { 
-        if(!$scope.type) $scope.title = uinLcl[$scope.locale].default_title + typeText.other
-        else $scope.title = uinLcl[$scope.locale].default_title + typeText[$scope.type];  
-    }
+    var idType;
 
-    if($scope.type && ($scope.type === 'bin' || $scope.type === 'iin')) uinSrvc.type = $scope.type;
+    if($scope.type && ($scope.type === 'bin' || $scope.type === 'iin')) uinService.type = $scope.type
+    else $scope.type = 'other';    
 
     function resetViewState() {
         $scope.state = '';
@@ -18,31 +16,31 @@ angular.module('egov.ui.uin')
         $scope.info = '';
     };
 
-    function errorState(type) {
+    function errorState() {
         $scope.state = 'error';
-        $scope.hint = hintMsg.invalid + typeText[type];
+        $scope.hint = T('egovUin.hint.invalid'); 
         return;
     };
 
     $scope.$watch('value', function(newValue, oldValue) {
         resetViewState();
-        idType = uinSrvc.getType(newValue);
+        idType = uinService.getType(newValue);
 
         if(newValue && newValue.length > 12) $scope.value = oldValue;
 
-        if(newValue && newValue.length < 12 && !uinSrvc.isNums(newValue)) {
+        if(newValue && newValue.length < 12 && !uinService.isNums(newValue)) {
                 $scope.state = 'warning';
-                $scope.hint = typeText[idType] + hintMsg.invalid_chars;
+                $scope.hint = T('egovUin.hint.invalid_chars');
                 return;
         }   
 
         if(newValue.length === 12) {
-            if(!uinSrvc.valid(newValue, idType)) return errorState(idType);
+            if(!uinService.valid(newValue, idType)) return errorState(idType);
 
             $scope.state = 'disabled';
-            $scope.hint = hintMsg.requesting;
+            $scope.hint = T('egovUin.hint.requesting')
 
-            uinSrvc.requestInfo(newValue, idType);
+            uinService.requestInfo(newValue, idType);
         } 
     });
 
@@ -57,8 +55,8 @@ angular.module('egov.ui.uin')
     $rootScope.$on( "rest.response:egov.ui.uin:error", 
         function(event, response) { 
             $scope.state = 'error';
-            if (response.status === 404) $scope.hint = typeText[idType] + hintMsg.not_found;
-            else $scope.hint = hintMsg.internal_error;    
+            if (response.status === 404) $scope.hint = T('egovUin.hint.not_found')
+            else $scope.hint = T('egovUin.hint.internal_error')   
         });     
 
 });
