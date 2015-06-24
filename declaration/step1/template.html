@@ -2,7 +2,7 @@
 <div elem="declaration-container" ng-controller="step1Controller as s1c">
 
     <div elem="input-box">
-        <h2 block="b-header" mod="{ 'size': 2 }">Получить справку</h2>
+        <h2 block="b-header" mod="{ 'size': 2 }">{{ 'step1.subtitle' | translate }}</h2>
          <egov-uin
             locale="{{ s1c.locale }}"
             info="s1c.uin.info"
@@ -11,10 +11,14 @@
     </div>
     
     <div elem="input-box" ng-show="s1c.uin.info">
-        НАЙДЕН <span ng-bind="s1c.uin.info"></span>
+        INFO: <span ng-bind="s1c.uin.info"></span>
     </div>            
 
-    <div elem="actions" ng-click=" s1c.chnglcl() ">
+    <div elem="input-box">
+        <span ng-click=" s1c.chnglcl('ru') ">RU</span> | <span ng-click=" s1c.chnglcl('kk') ">KK</span>
+    </div>     
+
+    <div elem="actions">
         <button 
             block="b-button" 
             ng-disabled="!s1c.uin.info" 

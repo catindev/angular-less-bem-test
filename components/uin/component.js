@@ -15,9 +15,8 @@ angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
             controller: 'uinController',
             link: function (scope, element, attrs) {
                 $rootScope.$emit('locale.alias', {
-                    scope: scope,
                     name: 'uinType',
-                    fn: function () { return 'egovUin.idtype' + egovLocale.get(); }
+                    key: 'egovUin.idtype.' + ( attrs.type || 'other' )
                 });               
             }
         }            

@@ -1,6 +1,6 @@
 <div>
 	<textbox 
-	    label="{{ title | translate }}" 
+	    label="{{ (title || 'egovUin.default_title') | translate }}" 
 	    value="value" 
 	    state="{{ state }}"
 	    hint="{{ hint | translate }}"

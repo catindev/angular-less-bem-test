@@ -1,5 +1,5 @@
 angular.module('declaration').controller('step1Controller', 
-	function($rootScope, egovLocale) {
+	function($rootScope) {
 
     	$rootScope.debug = true;
 
@@ -7,8 +7,8 @@ angular.module('declaration').controller('step1Controller',
         
         step1.uin = { value: '' };
 
-        step1.chnglcl = function () {
-        	egovLocale.set('kk');
+        step1.chnglcl = function (lang) {
+        	$rootScope.$emit('locale.change', lang);
         };
 
     }

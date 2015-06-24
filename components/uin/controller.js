@@ -1,9 +1,5 @@
 angular.module('egov.ui.uin').controller('uinController', 
-    function($scope, $element, $attrs, $filter, uinService, $rootScope) {
-
-    function T (text) {
-        return $filter('translate')(text);
-    };    
+    function($scope, $element, $attrs, uinService, $rootScope) {
 
     var idType;
 
@@ -18,7 +14,7 @@ angular.module('egov.ui.uin').controller('uinController',
 
     function errorState() {
         $scope.state = 'error';
-        $scope.hint = T('egovUin.hint.invalid'); 
+        $scope.hint = 'egovUin.hint.invalid'; 
         return;
     };
 
@@ -30,16 +26,14 @@ angular.module('egov.ui.uin').controller('uinController',
 
         if(newValue && newValue.length < 12 && !uinService.isNums(newValue)) {
                 $scope.state = 'warning';
-                $scope.hint = T('egovUin.hint.invalid_chars');
+                $scope.hint = 'egovUin.hint.invalid_chars';
                 return;
         }   
 
         if(newValue.length === 12) {
             if(!uinService.valid(newValue, idType)) return errorState(idType);
-
             $scope.state = 'disabled';
-            $scope.hint = T('egovUin.hint.requesting')
-
+            $scope.hint = 'egovUin.hint.requesting';
             uinService.requestInfo(newValue, idType);
         } 
     });
@@ -55,8 +49,8 @@ angular.module('egov.ui.uin').controller('uinController',
     $rootScope.$on( "rest.response:egov.ui.uin:error", 
         function(event, response) { 
             $scope.state = 'error';
-            if (response.status === 404) $scope.hint = T('egovUin.hint.not_found')
-            else $scope.hint = T('egovUin.hint.internal_error')   
+            if (response.status === 404) $scope.hint = 'egovUin.hint.not_found'
+            else $scope.hint = 'egovUin.hint.internal_error'  
         });     
 
 });
