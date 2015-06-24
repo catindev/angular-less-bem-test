@@ -11,7 +11,7 @@
     "port": "3000"
   },
   "scripts": {
-    "prepare": "npm i && bower i && gulp build",
+    "prepare": "npm i && bower i && gulp index",
     "static": "node test/static.js",
     "start": "npm run prepare && npm run static",
     "test": "echo \"Error: no test specified\" && exit 1"
