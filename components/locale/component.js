@@ -1,19 +1,19 @@
 angular.module('egov.ui.i18n',[ 'ngCookies', 'lodash' ])
 
-.factory('egovLocale', 
+.service('egovLocale', 
     function ($rootScope, $cookies) {
 
         var current = '',
             locales = [ 'kk', 'ru', 'en' ],
             cookies = [ 'locale', 'egovLang' ],
-            service = {};
+            service = this;
 
-        service.get = function (type) { 
+        this.get = function (type) { 
             if(type && type === "all") return locales 
             else return current; 
         };
         
-        service.set = function (lang) { 
+        this.set = function (lang) { 
             if (!lang || locales.indexOf(lang) === -1 || lang === 'kz') lang = 'kk';
             lang = lang.toLowerCase();
             if (lang === current) return;
@@ -27,8 +27,6 @@ angular.module('egov.ui.i18n',[ 'ngCookies', 'lodash' ])
         }); 
 
         if($cookies.get('egovLang')) service.set($cookies.egovLang);
-
-        return service;
     }
 )
 

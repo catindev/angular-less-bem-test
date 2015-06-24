@@ -14,12 +14,12 @@
         НАЙДЕН <span ng-bind="s1c.uin.info"></span>
     </div>            
 
-    <div elem="actions">
+    <div elem="actions" ng-click=" s1c.chnglcl() ">
         <button 
             block="b-button" 
             ng-disabled="!s1c.uin.info" 
             mod="{ type: 'action', size: 'm' }"
-            ng-click=" s1c.chnglcl() ">
+            >
             {{ 'step1.go_to_step_2' | translate }}
         </button>
     </div>

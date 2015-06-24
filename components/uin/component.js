@@ -1,7 +1,7 @@
 angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
 
 .directive('egovUin', 
-    function () {
+    function ($rootScope) {
         return {
             scope: {
                 title: '@',
@@ -12,7 +12,14 @@ angular.module('egov.ui.uin', [ 'egov.ui.textbox' ])
             templateUrl: 'components/uin/template.html',
             restrict: "E",
             replace: true,
-            controller: 'uinController'
+            controller: 'uinController',
+            link: function (scope, element, attrs) {
+                $rootScope.$emit('locale.alias', {
+                    scope: scope,
+                    name: 'uinType',
+                    fn: function () { return 'egovUin.idtype' + egovLocale.get(); }
+                });               
+            }
         }            
 });
 

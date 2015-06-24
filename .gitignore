@@ -1,6 +1,6 @@
 architecture/
 assets/vendors/
-node_modules
+node_modules/
 index.html
 npm-debug.log
 assets/components.js
