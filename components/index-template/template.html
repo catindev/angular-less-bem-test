@@ -22,11 +22,23 @@ html, body {
         <div block="b-page-header"></div>
 
         <div block="b-wrapper">
-            <div block="b-declaration" ng-controller="declarationController as Main">
-                <h1 elem="header" mod="{ 'size': 1 }">
-                    {{ 'title' | translate }}
-                </h1>           
-                <div ng-view></div>
+            <div block="b-grid">
+                <div elem="row">
+                    <div elem="col" style="width:25%;">
+                        <!-- steps here -->
+                    </div>
+
+                    <div elem="col">
+                        <div block="b-declaration" ng-controller="declarationController as Main">
+                            <h1 elem="header" mod="{ 'size': 1 }"> {{ 'title' | translate }} </h1>           
+                            <div ng-view></div>
+                        </div>                     
+                    </div>
+
+                    <div elem="col" style="width:25%;">
+                        <!-- help here -->
+                    </div>                          
+                </div>         
             </div>
         </div>
 

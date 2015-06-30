@@ -20,7 +20,7 @@ gulp.task('watch', [ 'index' ], function () {
         'declaration/**/kk.json', 
         'components/**/kk.json' 
         ], ['js']);
-    gulp.watch([ 'components/**/*.less', 'declaration/**/*.less' ], ['less']);
+    gulp.watch([ 'components/**/*.less', 'declaration/**/*.less' ], ['styles']);
     gulp.watch([ 'components/index-template/template.html' ], ['index']);
 });
 
