@@ -1,0 +1,4 @@
+<div block="b-radio">
+    <input id="{{ id }}" name="{{ id }}" type="radio" elem="control" value="3" disabled>
+    <label for="{{ id }}" elem="label">{{ title }}</label>
+</div>    

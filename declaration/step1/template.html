@@ -1,8 +1,24 @@
 
 <div elem="declaration-container" ng-controller="step1Controller as s1c">
 
+
     <div elem="input-box">
         <h2 block="b-header" mod="{ 'size': 2 }">{{ 'step1.subtitle' | translate }}</h2>
+        <div block="b-radio">
+            <input id="radio111" name="r1" type="radio" elem="control" value="1">
+            <label for="radio111" elem="label">На себя</label>
+        </div>  
+        <div block="b-radio">
+            <input id="radio222" name="r1" type="radio" elem="control" value="2">
+            <label for="radio222" elem="label">На ребенка</label>
+        </div>
+        <div block="b-radio">
+            <input id="radio333" name="r1" type="radio" elem="control" value="3" disabled>
+            <label for="radio333" elem="label">На супруга</label>
+        </div>                      
+    </div>      
+
+    <div elem="input-box">
          <egov-uin
             locale="{{ s1c.locale }}"
             info="s1c.uin.info"

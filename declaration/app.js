@@ -27,5 +27,9 @@ angular.module('declaration', [
 	
         var declaration = this;
 
+        $rootScope.$on("locale.current", function(event, lang) {
+            console.log('new lang in app is', lang)
+        }); 
+
     }
 );

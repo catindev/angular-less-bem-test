@@ -36,7 +36,8 @@ angular.module('egov.ui.i18n',[ 'ngCookies', 'lodash' ])
         locales = { ru: i18n_ru || {}, kk: i18n_kk || {}, en: i18n_en || {} },
         aliases = { };
 
-    this.translate = function (key) {
+    this.translate = function (key, args) {
+        var args = args || {};
         if ( !key ) return '';
         
         var ref = locales[ egovLocale.get() ];
@@ -48,7 +49,7 @@ angular.module('egov.ui.i18n',[ 'ngCookies', 'lodash' ])
         if ( ref.indexOf('{') != -1 && ref.indexOf('}') != -1 ) {
             var alias = ref.substring(ref.lastIndexOf('{')+1,ref.lastIndexOf('}')), replace;
             
-            if( _.isFunction( aliases[alias] ) ) replace = self.translate( aliases[alias]() )
+            if( _.isFunction( aliases[alias] ) ) replace = self.translate( aliases[alias](args) )
             else replace = self.translate( aliases[alias] );    
             
             ref = ref.replace( '{' + alias + '}', replace );
