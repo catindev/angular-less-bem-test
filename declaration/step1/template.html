@@ -5,29 +5,31 @@
     <div elem="input-box">
         <h2 block="b-header" mod="{ 'size': 2 }">{{ 'step1.subtitle' | translate }}</h2>
         <div block="b-radio">
-            <input id="radio111" name="r1" type="radio" elem="control" value="1">
+            <input id="radio111" name="r1" type="radio" elem="control" value="self" ng-model="s1c.model.type">
             <label for="radio111" elem="label">На себя</label>
         </div>  
         <div block="b-radio">
-            <input id="radio222" name="r1" type="radio" elem="control" value="2">
+            <input id="radio222" name="r1" type="radio" elem="control" value="child" ng-model="s1c.model.type">
             <label for="radio222" elem="label">На ребенка</label>
         </div>
         <div block="b-radio">
-            <input id="radio333" name="r1" type="radio" elem="control" value="3" disabled>
+            <input id="radio333" name="r1" type="radio" elem="control" value="spouce">
             <label for="radio333" elem="label">На супруга</label>
         </div>                      
     </div>      
 
-    <div elem="input-box">
+    <div elem="input-box" ng-show=" s1c.model.type !== 'self' ">
          <egov-uin
             locale="{{ s1c.locale }}"
-            info="s1c.uin.info"
-            value="s1c.uin.value">
+            info="s1c.model.info"
+            value="s1c.model.value">
         </egov-uin>               
     </div>
     
-    <div elem="input-box" ng-show="s1c.uin.info">
-        INFO: <span ng-bind="s1c.uin.info"></span>
+    <div elem="delimeter"></div>
+
+    <div elem="input-box">
+        DATA: <span ng-bind="s1c.model.info"></span> | <span ng-bind="s1c.model.type"></span>
     </div>            
 
     <div elem="input-box">
@@ -37,7 +39,7 @@
     <div elem="actions">
         <button 
             block="b-button" 
-            ng-disabled="!s1c.uin.info" 
+            ng-disabled="(!s1c.model.info && s1c.model.type !== 'self')" 
             mod="{ type: 'action', size: 'm' }"
             >
             {{ 'step1.go_to_step_2' | translate }}

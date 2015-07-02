@@ -5,7 +5,8 @@ angular.module('declaration').controller('step1Controller',
 
         var step1 = this;
         
-        step1.uin = { value: '' };
+        step1.model = { value: '', type: 'self' };
+        
 
         step1.chnglcl = function (lang) {
         	$rootScope.$emit('locale.change', lang);
